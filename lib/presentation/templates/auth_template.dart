@@ -65,7 +65,17 @@ class AuthTemplate extends StatelessWidget {
           constraints: BoxConstraints(
             maxWidth: maxWidth ?? AppDimensions.containerMaxWidth,
           ),
-          child: child,
+          child: Card(
+            elevation: 4,
+            shadowColor: Colors.black26,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppDimensions.radiusLg),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(AppDimensions.spacing2xl),
+              child: child,
+            ),
+          ),
         ),
       ),
     );

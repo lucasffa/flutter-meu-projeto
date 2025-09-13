@@ -20,6 +20,32 @@ class AuthService {
     required String username,
     required String password,
   }) async {
+    // ✅ CREDENCIAIS DE TESTE PARA DESENVOLVIMENTO
+    if (username == 'admin' && password == '1234') {
+      // Simula resposta de sucesso com dados mockados
+      await Future.delayed(const Duration(milliseconds: 800)); // Simula delay da API
+      
+      final mockResponse = {
+        'access_token': 'mock_access_token_12345',
+        'refresh_token': 'mock_refresh_token_67890',
+        'token_type': 'Bearer',
+        'expires_in': 3600,
+        'user': {
+          'id': '1',
+          'username': 'admin',
+          'email': 'admin@ifood.com',
+          'name': 'Administrador iFood',
+          'role': 'admin',
+          'permissions': ['read', 'write', 'delete'],
+          'is_active': true,
+          'created_at': '2024-01-01T00:00:00Z',
+        }
+      };
+      
+      return ApiResponse.success(mockResponse);
+    }
+
+    // Continua com a lógica original para outras credenciais
     try {
       final response = await _client
           .post(
@@ -95,6 +121,12 @@ class AuthService {
   }
 
   Future<ApiResponse> validateToken(String accessToken) async {
+    // ✅ VALIDAÇÃO MOCK PARA TOKEN DE TESTE
+    if (accessToken == 'mock_access_token_12345') {
+      await Future.delayed(const Duration(milliseconds: 300));
+      return ApiResponse.success({'valid': true});
+    }
+
     try {
       final response = await _client
           .get(
@@ -118,6 +150,25 @@ class AuthService {
   }
 
   Future<ApiResponse> getCurrentUser(String accessToken) async {
+    // ✅ DADOS MOCK DO USUÁRIO DE TESTE
+    if (accessToken == 'mock_access_token_12345') {
+      await Future.delayed(const Duration(milliseconds: 400));
+      
+      final mockUser = {
+        'id': '1',
+        'username': 'admin',
+        'email': 'admin@ifood.com',
+        'name': 'Administrador iFood',
+        'role': 'admin',
+        'permissions': ['read', 'write', 'delete'],
+        'is_active': true,
+        'created_at': '2024-01-01T00:00:00Z',
+        'last_login_at': '2024-01-01T00:00:00Z',
+      };
+      
+      return ApiResponse.success(mockUser);
+    }
+
     try {
       final response = await _client
           .get(

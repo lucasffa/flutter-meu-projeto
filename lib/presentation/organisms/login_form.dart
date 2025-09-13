@@ -7,6 +7,7 @@ import '../atoms/app_logo.dart';
 import '../atoms/app_text.dart';
 import '../atoms/app_button.dart';
 import '../../core/constants/app_dimensions.dart';
+import '../../core/constants/app_colors.dart';
 import '../../core/utils/validators.dart';
 import '../../core/constants/app_strings.dart';
 
@@ -104,11 +105,12 @@ class _LoginFormState extends State<LoginForm> {
             title: widget.title,
             subtitle: widget.subtitle,
             showLogo: widget.showLogo,
-            logoSize: widget.logoSize,
-            titleVariant: AppTextVariant.titleLarge,
-            subtitleVariant: AppTextVariant.bodyMedium,
-            titleColor: Colors.black,
-            subtitleColor: Colors.grey[600],
+            logoSize: AppLogoSize.medium,
+            logoVariant: AppLogoVariant.svg, // Use SVG quando disponível
+            titleVariant: AppTextVariant.headlineSmall,
+            subtitleVariant: AppTextVariant.bodySmall,
+            titleColor: AppColors.textPrimary,
+            subtitleColor: AppColors.textSecondary,
           ),
           
           SizedBox(height: widget.spacing ?? AppDimensions.spacing2xl),
@@ -124,7 +126,7 @@ class _LoginFormState extends State<LoginForm> {
             enabled: !widget.isLoading,
           ),
           
-          SizedBox(height: widget.formSpacing ?? AppDimensions.spacingLg),
+          SizedBox(height: widget.formSpacing ?? AppDimensions.spacingMd),
           
           // Campo de Senha
           AppFormField(
@@ -146,7 +148,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
           ),
           
-          SizedBox(height: widget.spacing ?? AppDimensions.spacing2xl),
+          SizedBox(height: widget.spacing ?? AppDimensions.spacingXl),
           
           // Mensagem de Erro
           if (widget.errorMessage != null) ...[
@@ -164,13 +166,13 @@ class _LoginFormState extends State<LoginForm> {
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: AppDimensions.spacingLg),
+            const SizedBox(height: AppDimensions.spacingLg),
           ],
           
           // Botões de Ação
           ButtonGroup(
             fullWidth: true,
-            spacing: AppDimensions.spacingMd,
+            spacing: AppDimensions.spacingLg,
             buttons: [
               ButtonGroupItem(
                 text: widget.loginButtonText,
@@ -183,7 +185,7 @@ class _LoginFormState extends State<LoginForm> {
                 text: widget.forgotPasswordText,
                 onPressed: widget.isLoading ? null : widget.onForgotPassword,
                 variant: AppButtonVariant.text,
-                size: AppButtonSize.medium,
+                size: AppButtonSize.small,
               ),
             ],
           ),

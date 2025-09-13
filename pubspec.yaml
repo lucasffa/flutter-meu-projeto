@@ -19,6 +19,9 @@ dependencies:
   # Local Storage
   shared_preferences: ^2.2.2
 
+  # SVG Support
+  flutter_svg: ^2.0.9
+
   # Utilities
   cupertino_icons: ^1.0.6
 
@@ -31,9 +34,8 @@ flutter:
   uses-material-design: true
 
   # Assets
-  # assets:
-  #   - images/
-  #   - icons/
+  assets:
+    - assets/images/
 
   # Fonts
   # fonts:

@@ -1,10 +1,11 @@
 // lib/presentation/atoms/app_logo.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_dimensions.dart';
 
 enum AppLogoSize { small, medium, large }
-enum AppLogoVariant { full, iconOnly, textOnly }
+enum AppLogoVariant { full, iconOnly, textOnly, svg }
 
 class AppLogo extends StatelessWidget {
   const AppLogo({
@@ -14,6 +15,7 @@ class AppLogo extends StatelessWidget {
     this.color,
     this.height,
     this.width,
+    this.svgAsset = 'assets/images/ifood-logo.svg',
   });
 
   final AppLogoSize size;
@@ -21,6 +23,7 @@ class AppLogo extends StatelessWidget {
   final Color? color;
   final double? height;
   final double? width;
+  final String svgAsset;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +34,8 @@ class AppLogo extends StatelessWidget {
         return _buildIconOnly();
       case AppLogoVariant.textOnly:
         return _buildTextOnly();
+      case AppLogoVariant.svg:
+        return _buildSvgLogo();
     }
   }
 
@@ -53,6 +58,17 @@ class AppLogo extends StatelessWidget {
     return _buildText();
   }
 
+  Widget _buildSvgLogo() {
+    return SvgPicture.asset(
+      svgAsset,
+      width: width ?? _getIconSize(),
+      height: height ?? _getIconSize(),
+      colorFilter: color != null
+          ? ColorFilter.mode(color!, BlendMode.srcIn)
+          : null,
+    );
+  }
+
   Widget _buildIcon() {
     return Container(
       width: width ?? _getIconSize(),
@@ -66,7 +82,7 @@ class AppLogo extends StatelessWidget {
           'i',
           style: TextStyle(
             fontSize: _getIconFontSize(),
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w900,
             color: AppColors.white,
             fontStyle: FontStyle.italic,
           ),
@@ -83,17 +99,18 @@ class AppLogo extends StatelessWidget {
             text: 'i',
             style: TextStyle(
               fontSize: _getTextFontSize(),
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w800,
               color: color ?? AppColors.primaryRed,
               fontStyle: FontStyle.italic,
             ),
           ),
           TextSpan(
-            text: 'food',
+            text: 'Food',
             style: TextStyle(
               fontSize: _getTextFontSize(),
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w800,
               color: color ?? AppColors.primaryRed,
+              letterSpacing: -0.5,
             ),
           ),
         ],
