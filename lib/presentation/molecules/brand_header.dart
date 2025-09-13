@@ -20,6 +20,8 @@ class BrandHeader extends StatelessWidget {
     this.logoColor,
     this.titleColor,
     this.subtitleColor,
+    this.titleFontWeight,
+    this.subtitleFontWeight,
     this.showLogo = true,
   });
 
@@ -36,6 +38,8 @@ class BrandHeader extends StatelessWidget {
   final Color? logoColor;
   final Color? titleColor;
   final Color? subtitleColor;
+  final FontWeight? titleFontWeight;
+  final FontWeight? subtitleFontWeight;
   final bool showLogo;
 
   @override
@@ -59,6 +63,7 @@ class BrandHeader extends StatelessWidget {
             title!,
             variant: titleVariant,
             color: titleColor,
+            fontWeight: titleFontWeight,
             textAlign: _getTextAlign(),
           ),
           if (subtitle != null)
@@ -69,6 +74,7 @@ class BrandHeader extends StatelessWidget {
             subtitle!,
             variant: subtitleVariant,
             color: subtitleColor,
+            fontWeight: subtitleFontWeight,
             textAlign: _getTextAlign(),
           ),
       ],

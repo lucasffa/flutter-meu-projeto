@@ -72,7 +72,10 @@ class AuthTemplate extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppDimensions.radiusLg),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(AppDimensions.spacing2xl),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimensions.spacing2xl,
+                vertical: AppDimensions.spacingXl,
+              ),
               child: child,
             ),
           ),

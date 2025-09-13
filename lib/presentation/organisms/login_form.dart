@@ -108,6 +108,7 @@ class _LoginFormState extends State<LoginForm> {
             logoSize: AppLogoSize.medium,
             logoVariant: AppLogoVariant.svg, // Use SVG quando disponível
             titleVariant: AppTextVariant.headlineSmall,
+            titleFontWeight: FontWeight.bold,
             subtitleVariant: AppTextVariant.bodySmall,
             titleColor: AppColors.textPrimary,
             subtitleColor: AppColors.textSecondary,
@@ -124,6 +125,7 @@ class _LoginFormState extends State<LoginForm> {
             textInputAction: TextInputAction.next,
             validator: AppValidators.required,
             enabled: !widget.isLoading,
+            spacing: AppDimensions.spacingXs, // Label mais próximo do input
           ),
           
           SizedBox(height: widget.formSpacing ?? AppDimensions.spacingMd),
@@ -138,6 +140,7 @@ class _LoginFormState extends State<LoginForm> {
             textInputAction: TextInputAction.done,
             validator: AppValidators.required,
             enabled: !widget.isLoading,
+            spacing: AppDimensions.spacingXs, // Label mais próximo do input
             onSubmitted: (_) => _handleSubmit(),
             suffixIcon: IconButton(
               icon: Icon(
@@ -148,7 +151,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
           ),
           
-          SizedBox(height: widget.spacing ?? AppDimensions.spacingXl),
+          SizedBox(height: widget.spacing ?? AppDimensions.spacingMd),
           
           // Mensagem de Erro
           if (widget.errorMessage != null) ...[
@@ -172,19 +175,19 @@ class _LoginFormState extends State<LoginForm> {
           // Botões de Ação
           ButtonGroup(
             fullWidth: true,
-            spacing: AppDimensions.spacingLg,
+            spacing: AppDimensions.spacingSm,
             buttons: [
               ButtonGroupItem(
                 text: widget.loginButtonText,
                 onPressed: widget.isLoading ? null : _handleSubmit,
                 variant: AppButtonVariant.primary,
-                size: AppButtonSize.large,
+                size: AppButtonSize.small,
                 isLoading: widget.isLoading,
               ),
               ButtonGroupItem(
                 text: widget.forgotPasswordText,
                 onPressed: widget.isLoading ? null : widget.onForgotPassword,
-                variant: AppButtonVariant.text,
+                variant: AppButtonVariant.outline,
                 size: AppButtonSize.small,
               ),
             ],
